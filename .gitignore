@@ -1,2 +1,6 @@
+*
+!LICENSE
 scratch/
 scratch/**
+!*.*
+*.o
