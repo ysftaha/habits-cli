@@ -40,6 +40,7 @@ void usage() {
 
 int main(int argc, char *argv[]) {
   char opt;
+	l
 	// @TODO still needs work
   while ((opt = getopt(argc, argv, ":a:r:f:")) != -1) {
     switch (opt) {
