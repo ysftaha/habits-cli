@@ -20,10 +20,29 @@ void usage() {
        "       hcli -l\n" // list habits in db
        "       hcli -v\n" // version
        "       hcli -h\n" // help
-       "Options:\n");
+       "Options:\n"
+			 "    -v               Show version.\n"
+			 "    -h               This help message and usage.\n"
+			 "    -l               List habit names in database and general info.\n"
+			 "    -a <habit-name>  Add a habit.\n"
+			 "    -s <DD/MM/YY>    Set starting date (inclusive) of tracking habit\n"
+			 "                     when adding a habit.\n"
+			 "    -r <num>         Set repeatition when adding a habit.\n"
+			 "                     Example: hcli -a habit-name -r 7 -s DD/MM/YY.\n"
+			 "                     Note: '-r' and '-f' are mutually exclusive.\n"
+			 "    -f <0-6>         Set frequency when adding a habit. Where 0 is\n"
+			 "                     the starting day of the week.\n"
+			 "                     Example: hcli -a habit-name -f 013 -s DD/MM/YY.\n"
+			 "                              This adds a habit that repeats every\n"
+			 "                              Monday(0), Tuesday(1), Thursday(3).\n"
+			 "                     Note: '-r' and '-f' are mutually exclusive.\n"
+			 "    -d <name>        Delete a habit 'name' if it exists.\n"
+			 );
 }
 
-void version() {}
+void version() {
+  puts("hcli pre-alpha");
+}
 
 int main(int argc, char *argv[]) {
   char opt;

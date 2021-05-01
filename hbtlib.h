@@ -13,6 +13,9 @@
 #include <sys/types.h>
 #include <time.h>
 
+/**
+ * @brief holds time and date
+ */
 typedef struct tm tm;
 
 /**
@@ -21,11 +24,12 @@ typedef struct tm tm;
  */
 typedef union recur {
   bool frequency[7]; // Days of week
-  size_t repeat;
+  size_t repeat;  	 // Every x days
 } recur;
 
 typedef struct habit {
   const char *name;
+	const size_t perday; /** times per day */
   recur rec;
   tm start_date;
 } habit;
