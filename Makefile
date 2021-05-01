@@ -13,10 +13,10 @@ CC       = clang
 # INCS = -I$(X11INC) -I$(FREETYPEINC)
 LIBS = -lm
 
-SRC = hcli.c
+SRC = hbtcli.c hbtlib.c
 OBJ = $(SRC:.c=.o)
 
-all: hcli run
+all: hbtcli runcli
 
 options:
 	@echo habits-cli build options
@@ -25,13 +25,13 @@ options:
 	@echo "        [Libraries] LIBS   = $(LIBS)"
 	@echo "        [compiler]  CC     = $(CC)"
 
-hcli: hcli.o
-	$(CC) -o $@ hcli.o $(LIBS)
-
-run: hcli
-	./hcli -h
-
-$(OBJ):
-
 .c.o:
 	$(CC) -c $(CFLAGS) $<
+
+$(OBJ): hbtlib.h
+
+hbtcli: hbtcli.o hbtlib.o
+	$(CC) -o $@ hbtcli.o hbtlib.o $(LIBS)
+
+runcli: hbtcli
+	./hbtcli -f
