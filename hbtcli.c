@@ -1,5 +1,5 @@
 /**
- * @file hcli.c
+ * @file hbtcli.c
  * @brief Adds, removes, and edits habits in the sqlite3 database
  */
 #include "hbtlib.h"
@@ -9,16 +9,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-void usage();
-void version();
+void usage(void);
+void version(void);
+
 habit create(char *args[4]);
 void del(char *name);
+void list(void);
 
 void usage() {
-  puts("Usage: hcli (-a | -d) habit -s DD/MM/YY (-r <num> | -f <0-6>)\n"
-       "       hcli -v\n" // version
-       "       hcli -h\n" // help
-       "       hcli -l\n" // list habits in db
+  puts("Usage: hbtcli (-a | -d) habit -s DD/MM/YY (-r <num> | -f <0-6>)\n"
+       "       hbtcli -v\n" // version
+       "       hbtcli -h\n" // help
+       "       hbtcli -l\n" // list habits in db
        "Options:\n"
        "    -v               Show version.\n"
        "    -h               This help message and usage.\n"
@@ -28,12 +30,12 @@ void usage() {
        "                     Note: '-s' must come after '-a'\n"
        "                     when adding a habit.\n"
        "    -r <num>         Set repeatition when adding a habit.\n"
-       "                     Example: hcli -a habit-name -r 7 -s DD/MM/YY.\n"
+       "                     Example: hbtcli -a habit-name -r 7 -s DD/MM/YY.\n"
        "                     Note: '-r' and '-f' are mutually exclusive,\n"
        "                           and must come after '-a'.\n"
        "    -f <0-6>         Set frequency when adding a habit. Where 0 is\n"
        "                     the starting day of the week.\n"
-       "                     Example: hcli -a habit-name -f 013 -s DD/MM/YY.\n"
+       "                     Example: hbtcli -a habit-name -f 013 -s DD/MM/YY.\n"
        "                              This adds a habit that repeats every\n"
        "                              Monday(0), Tuesday(1), Thursday(3).\n"
        "                     Note: '-r' and '-f' are mutually exclusive,\n"
@@ -43,9 +45,9 @@ void usage() {
 }
 
 /**
- * @brief prints the current verion of hcli.
+ * @brief prints the current verion of hbtcli.
  */
-void version() { puts("hcli pre-alpha"); }
+void version() { puts("hbtcli pre-alpha"); }
 
 int main(int argc, char *argv[]) {
   char opt;
